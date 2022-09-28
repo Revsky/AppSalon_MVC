@@ -1,0 +1,28 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.contenedor-app{
+    /* Divide la pantalla en 2 para mostrar de un lado la imagen y del otro el login */
+    @include m.tablet{
+        display: grid;
+        grid-template-columns: repeat(2,1fr) ;
+        min-height: 100vh;
+    }
+
+    .imagen{
+        height: 20rem;
+        background-image: url(../img/principal.jpg);
+        background-size: cover;
+        background-position: center center;
+        /* Agregamos un media query para que cuando la pantalla sea grande la imagen tome todo el tamaño de un lado */
+        @include m.tablet{
+            height: auto;
+        }
+    }
+
+    .app{
+        width: 95%;
+        margin: 0 auto;
+        padding: 3rem 0;
+    }
+}
