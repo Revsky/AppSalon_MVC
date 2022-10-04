@@ -20,8 +20,8 @@ class Usuario extends ActiveRecord{
     public function __construct( $args = [] )
     {       
         $this->id = $args['id'] ?? null;
-        $this->nombre = $args['nombre'] ?? null;
-        $this->apellido = $args['apellido'] ?? null;
+        $this->nombre = $args['nombre'] ?? '';
+        $this->apellido = $args['apellido'] ?? '';
         $this->email = $args['email'] ?? null;
         $this->password = $args['password'] ?? null;
         $this->telefono = $args['telefono'] ?? null;
