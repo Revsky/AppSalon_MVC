@@ -58,7 +58,15 @@ class LoginController{
 
                     // Enviar el email
                     $email = new Email($usuario->email,$usuario->nombre,$usuario->token);
-                    debuguear($email);
+                    $email->enviarConfirmacion();
+
+                    // Crear el usuario
+                    
+                    $resultado = $usuario->guardar();
+                    if($resultado){
+                        header('Location: /mensaje');
+                    }
+                    
                 }
            }
            
@@ -67,6 +75,25 @@ class LoginController{
         $router->render('/auth/crear-cuenta',[
             'usuario' => $usuario,
             'alertas' => $alertas,
+        ]);
+    }
+
+    public static function mensaje(Router $router){
+        $router->render('auth/mensaje');
+    }
+
+    public static function confirmar(Router $router )
+    {
+
+        $alertas = [];
+
+        $token = sanitizar($_GET['token']);
+        
+        $usuario = Usuario::where('token',$token);
+        debuguear($usuario);
+
+        $router->render('auth/confirmar-cuenta',[
+            'alertas' => $alertas
         ]);
     }
 }

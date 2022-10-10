@@ -123,6 +123,13 @@ class ActiveRecord {
         return array_shift( $resultado ) ;
     }
 
+    // Busca un registro por su where
+    public static function where($columna,$valor) {
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE ${columna} = '${valor}'";
+        $resultado = self::consultarSQL($query);
+        return array_shift( $resultado ) ;
+    }
+
     // crea un nuevo registro
     public function crear() {
         // Sanitizar los datos
@@ -136,6 +143,7 @@ class ActiveRecord {
         $query .= " ') ";
 
         // Resultado de la consulta
+        
         $resultado = self::$db->query($query);
         return [
            'resultado' =>  $resultado,
@@ -159,7 +167,7 @@ class ActiveRecord {
         $query .=  join(', ', $valores );
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 "; 
-
+        
         // Actualizar BD
         $resultado = self::$db->query($query);
         return $resultado;
