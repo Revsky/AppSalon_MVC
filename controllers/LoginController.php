@@ -51,6 +51,9 @@ class LoginController{
                 }else{
                     // Hashear password
                     $usuario->hashPassword();
+
+                    // Generar un token unico
+                    $usuario->crearToken();
                 }
            }
            
