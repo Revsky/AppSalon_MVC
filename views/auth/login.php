@@ -4,6 +4,15 @@
 <?php 
     include_once __DIR__ . "/../template/alertas.php";
 ?>
+<?php 
+
+    $restore = $_GET['restore'];
+    if($restore):
+?>
+<div class="alerta exito ">
+    <?php echo "Contraseña Actualizada"?>
+</div>
+<?php endif?>
 
 <form class="formulario" method="POST" action="/">
     <div class="campo">
