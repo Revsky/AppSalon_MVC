@@ -116,7 +116,21 @@ class LoginController{
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            
+            //Leer el nuevo passwrd y guardaro
+            $password = new Usuario($_POST);  
+            $alertas = $password->validarPassword();
+
+            if(empty($alertas)){
+                $usuario->password = $password->password;
+                $usuario->hashPassword();
+                $usuario->token = null;
+
+                $resultado  = $usuario->guardar();
+
+                if($resultado){
+                    header('Location: /');
+                }
+            }
         }
 
 
