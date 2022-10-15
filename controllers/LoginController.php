@@ -79,7 +79,10 @@ class LoginController{
                     $usuario->guardar();
 
                     //TODO: enviar el email
+                    $email = new Email($usuario->nombre,$usuario->email,$usuario->token);
+                    $email->enviarInstrucciones();
 
+                    //Alerte exito
                     Usuario::setAlerta('exito','Revisa tu email');
                     
                     
