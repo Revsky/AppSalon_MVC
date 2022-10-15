@@ -1,6 +1,14 @@
 <h1 class="nombre-pagina">Recuperar Password</h1>
 <p class="descripcion-pagina">Coloca tu nuevo password acontinuacíon</p>
 
+<?php 
+
+    include_once __DIR__ . '/../template/alertas.php';
+
+?>
+<!-- Colocamos este if, para que en el caso de que el token no sea valido no muestre el fomulario -->
+<?php if($error) return;?>
+
 <form class="formulario" method="POST">
     <div class="campo">
         <label for="password">Password:</label>
