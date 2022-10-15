@@ -79,7 +79,7 @@ class LoginController{
                     $usuario->guardar();
 
                     //TODO: enviar el email
-                    $email = new Email($usuario->nombre,$usuario->email,$usuario->token);
+                    $email = new Email($usuario->email,$usuario->nombre,$usuario->token);
                     $email->enviarInstrucciones();
 
                     //Alerte exito
@@ -100,9 +100,11 @@ class LoginController{
         ]);
     }
 
-    public static function recuperar( ) 
+    public static function recuperar(Router $router ) 
     {
-        echo "dede recuperar";
+        $router->render('auth/recuperar-password',[
+            
+        ]);
     }
 
     public static function crear(Router $router ) 
