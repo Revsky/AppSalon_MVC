@@ -5,8 +5,8 @@
     include_once __DIR__ . "/../template/alertas.php";
 ?>
 <?php 
-
-    $restore = $_GET['restore'];
+    
+    $restore = $_GET['restore'] ?? null;
     if($restore):
 ?>
 <div class="alerta exito ">
