@@ -5,7 +5,7 @@
     <nav class="tabs">
         <button class="actual" type="button" data-paso="1">Servicios</button>
         <button type="button" data-paso="2">Información Cita</button>
-        <button type="button" data-paso="2">Resumen</button>
+        <button type="button" data-paso="3">Resumen</button>
     </nav>
 
     <div id="paso-1" class="seccion">
@@ -66,3 +66,10 @@
         >Siguiente &raquo;</button>
     </div>
 </div>
+
+<?php 
+    $script = "
+    
+        <script src = 'build/js/app.js'></script>
+    "
+?>
