@@ -14,3 +14,11 @@
         margin: 0 0 1rem 0;
     }
 }
+
+.ocultar{
+    /* Si usamos display:none de alguna manera lo elimina del DOM y hace que el boton siguiente se mueva de posicion
+    
+    Al usar visibiliti solamente se oculta pero no mueve los demas elementos
+    */
+    visibility: hidden;
+}
