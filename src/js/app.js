@@ -14,6 +14,8 @@ function iniciarApp(){
 
     paginaSiguiente();
     paginaAnterior();
+
+    consultarAPI(); // <- Consulta la api en el backend de php
 }
 function mostrarSeccion(){
 
@@ -97,4 +99,20 @@ function paginaSiguiente(){
         botonesPaginador();
     })
 
+}
+
+// Esta funcion al ser aincrona puede permitir ejecutar el resto del código aunque la tarea de esta funcion no termine, es como un hilo
+async function consultarAPI(){
+    
+    try {
+        const url = 'http://localhost:8000/api/servicios';
+        // Await viene acompañado de async, y se encarga de esperara hasta que la peticion termine por completo, en este caso el fetch
+        const resultado = await fetch(url)
+        const servicios = await resultado.json();
+
+        console.log(servicios);
+
+    } catch (error) {
+        console.log(error);
+    }
 }
