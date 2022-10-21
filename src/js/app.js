@@ -162,9 +162,12 @@ function mostrarServicios(servicios){
 
 function seleccionarServico(servicio){
     const {servicios} = cita;
+    const {id} = servicio;
 
     // Creamos una cópia del array de servicios y agregamos el nuevo servicio seleccioando
     cita.servicios = [...servicios, servicio] 
 
+    const divServicio = document.querySelector(`[data-id-servicio="${id}"]`)
+    divServicio.classList.add('seleccionado')
     console.log(cita)
 }
