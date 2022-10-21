@@ -3,6 +3,13 @@ let paso = 1
 const pasoInicial = 1;
 const pasoFinal = 3;
 
+const cita = {
+    nombre:'',
+    fecha:'',
+    hora:'',
+    servicios:[]
+}
+
 document.addEventListener('DOMContentLoaded',function(){
     iniciarApp();
 })
@@ -134,6 +141,14 @@ function mostrarServicios(servicios){
         // permite generar un set personalizado que en automatico asigna el id a la propiedad generada
         servicioDiv.dataset.idServicio = id;
 
+        // Podemos agregar una función directamente al div para que se ejecute cada que haya un click, sin necesidad de integrar un listener
+        /// servicioDiv.onclick = seleccionarServico;
+        
+        // Cambiamos a esta sintaxis para que mandemos argumentos a ala funcion asociadam ya que si solamente agregamos seleccionarServicio() <- se ejecutara la funcion en automatico
+        servicioDiv.onclick = function(){
+            seleccionarServico(servicio);
+        }
+
         servicioDiv.appendChild(nombreServicio);
         servicioDiv.appendChild(precioServicio); 
 
@@ -143,4 +158,13 @@ function mostrarServicios(servicios){
 
 
     });
+}
+
+function seleccionarServico(servicio){
+    const {servicios} = cita;
+
+    // Creamos una cópia del array de servicios y agregamos el nuevo servicio seleccioando
+    cita.servicios = [...servicios, servicio] 
+
+    console.log(cita)
 }
