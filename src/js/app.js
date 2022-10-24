@@ -25,6 +25,7 @@ function iniciarApp(){
     nombreCliente() // <-- Obtenemos el nombre del cliente
     seleccionarFecha() // <-- Obtiene la fecha
     seleccionarHora()
+    mostrarResumen()
 
 
     consultarAPI(); // <- Consulta la api en el backend de php
@@ -67,6 +68,7 @@ function tabs(){
 
             mostrarSeccion();
             botonesPaginador();
+            mostrarResumen()
         })
     } )
 }
@@ -203,7 +205,7 @@ function seleccionarFecha(){
 
         if([6,0].includes(dia)){
             event.target.value = ""
-            mostrarAlerta('Fines de Semana no permitidos','error');
+            mostrarAlerta('Fines de Semana no permitidos','error','#paso-2 p');
         }else{
             console.log("correcot")
         }
@@ -221,28 +223,43 @@ function seleccionarHora(){
         
         if(hora < 10 || hora > 18){
             event.target.value = ""
-            mostrarAlerta('Horas No Validas','error')
+            mostrarAlerta('Horas No Validas','error','#paso-2 p')
         }else{
             cita.hora = event.target.value
         }
     })
 }
 
-function mostrarAlerta(mensaje,tipo){
+function mostrarAlerta(mensaje,tipo,elemento,desaparece =true){
 
-    // previenen que se genere más de una alerta
+    // previenen que se genere más de una alerta y nos pemrite mostrar nuevas alertas
     const alertaPrevia = document.querySelector('.alerta')
-    if(alertaPrevia) return;
+    if(alertaPrevia){
+        alertaPrevia.remove() 
+    }
 
     const alerta = document.createElement('DIV')
     alerta.textContent = mensaje
     alerta.classList.add('alerta')
     alerta.classList.add(tipo)
 
-    const formulario = document.querySelector('#paso-2 p')
-    formulario.appendChild(alerta)
+    const referencia = document.querySelector(elemento)
+    referencia.appendChild(alerta)
 
-    setTimeout(() =>{
-        alerta.remove()
-    },3000)
+    if (desaparece){
+        setTimeout(() =>{
+            alerta.remove()
+        },3000)
+    }
+    
+}
+
+function mostrarResumen(){
+    const resumen = document.querySelector('.contenido-resumen')
+
+    if(Object.values(cita).includes('') || cita.servicios.length === 0){
+        mostrarAlerta('Faltan datos de servicio, fecha u hora','error','.contenido-resumen',false)
+    }else{
+        console.log("ok")
+    }
 }
