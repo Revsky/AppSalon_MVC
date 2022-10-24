@@ -23,6 +23,8 @@ function iniciarApp(){
     paginaAnterior();
 
     nombreCliente() // <-- Obtenemos el nombre del cliente
+    seleccionarFecha() // <-- Obtiene la fecha
+
 
     consultarAPI(); // <- Consulta la api en el backend de php
 }
@@ -188,4 +190,22 @@ function nombreCliente(){
     const nombre = document.querySelector("#nombre").value
 
     cita.nombre = nombre
+}
+
+function seleccionarFecha(){
+    const inputFecha = document.querySelector("#fecha")
+    inputFecha.addEventListener('input',function(event){
+
+        // Devuelve los dias de la semana del 0 al 6 siendo 0 Domingo
+        const dia = new Date(event.target.value).getUTCDay()
+
+
+        if([6,0].includes(dia)){
+            event.target.value = ""
+            console.log("Sabado y domingo no abrimos")
+        }else{
+            console.log("correcot")
+        }
+        
+    })
 }
