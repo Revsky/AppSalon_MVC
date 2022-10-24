@@ -131,6 +131,7 @@ function mostrarServicios(servicios){
         const nombreServicio = document.createElement('P');
         nombreServicio.classList.add('nombre-servicio');
         nombreServicio.textContent = nombre;
+        
 
         const precioServicio = document.createElement('P');
         precioServicio.classList.add('precio-servicio');
@@ -163,12 +164,26 @@ function mostrarServicios(servicios){
 function seleccionarServico(servicio){
     const {id} = servicio;
     const {servicios} = cita;
-
-    // Creamos una cópia del array de servicios y agregamos el nuevo servicio seleccioando
-    cita.servicios = [...servicios, servicio] 
-
     const divSericio = document.querySelector(`[data-id-servicio="${id}"]`)
-    divSericio.classList.add('seleccionado')
+
+    // Comprobar si un sercicio ya fue agregado
+    if( servicios.some( agregado => agregado.id === id) ){
+        // Eliminar si ya esta agregado
+
+        // Elimina un elemento cuyo id sea difernet al seleccianado
+        cita.servicios = servicios.filter( agregado => agregado.id !== id )
+        divSericio.classList.remove('seleccionado')
+    }else{
+        // Creamos una cópia del array de servicios y agregamos el nuevo servicio seleccioando
+        cita.servicios = [...servicios, servicio] 
+        divSericio.classList.add('seleccionado')
+    }   
+
+    
+
+    
+    
+    
 
     console.log(cita)
 }

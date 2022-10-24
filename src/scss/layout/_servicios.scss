@@ -20,6 +20,7 @@
             background-color: v.$azul;
             p{
                 color: v.$blanco;
+                
             }
         }
 
@@ -30,6 +31,9 @@
         p{
             color: v.$negro;
             margin: 0 0 calc(v.$separacion / 4) 0;
+            cursor: pointer;
+            /* Desactivamos la seleccion del texto para una mejor experiencia de usuario */
+            user-select: none;
         }
         .precio-servicio{
             color: v.$azul;
