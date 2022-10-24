@@ -274,14 +274,12 @@ function mostrarResumen(){
     // Formatear el div de resumen
     const {nombre,fecha,hora,servicios} = cita
 
-    const nombreCliente = document.createElement('P')
-    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`
+    
+    // Heading para servicios
+    const headingServicios = document.createElement('H3')
+    headingServicios.textContent = 'Resumen de Servicios'
 
-    const fechaCita = document.createElement('P')
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`
-
-    const horaCita = document.createElement('P')
-    horaCita.innerHTML = `<span>Hora:</span> ${hora}`
+    resumen.appendChild(headingServicios)
 
     // Servicio
 
@@ -303,6 +301,38 @@ function mostrarResumen(){
 
         resumen.appendChild(contenedor)
     })
+
+     // Heading para Cita
+     const headingCita = document.createElement('H3')
+     headingCita.textContent = 'Resumen de Cita'
+ 
+     resumen.appendChild(headingCita)
+
+    const nombreCliente = document.createElement('P')
+    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`
+
+    // Formatear la fecha en español
+    // Cada que utilicemos new Date temos un desface de un dia menos al de la fecha solicitada
+    const fechaObj = new Date(fecha) // <- creamos un nuevo objeto fecha a partir del texto fecha que devuelve el input
+    const mes = fechaObj.getMonth()
+    const dia = fechaObj.getDate() + 2 // <- Corregimos el desface
+    const year = fechaObj.getFullYear();
+
+    // En este punto ya serian -2 días
+
+    const fechaUTC = new Date(Date.UTC(year,mes,dia)) // <- generamos una fecha unix
+
+    // Este formato solo funciona con objetos DATE por ellos realizamos todas las fases anteriores, la funcion toLocaleString devuelve una fecha en un idioma en especifico
+    const opciones = {weekday:'long',year:'numeric',month:'long',day:'numeric'}
+    const fechaFormateada = fechaUTC.toLocaleDateString('es-MX',opciones)
+
+    console.log(fechaFormateada)
+    const fechaCita = document.createElement('P')
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`
+
+    const horaCita = document.createElement('P')
+    horaCita.innerHTML = `<span>Hora:</span> ${hora}`
+
 
     resumen.appendChild(nombreCliente)
     resumen.appendChild(fechaCita)
