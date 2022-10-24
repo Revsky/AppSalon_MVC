@@ -22,6 +22,8 @@ function iniciarApp(){
     paginaSiguiente();
     paginaAnterior();
 
+    nombreCliente() // <-- Obtenemos el nombre del cliente
+
     consultarAPI(); // <- Consulta la api en el backend de php
 }
 function mostrarSeccion(){
@@ -179,11 +181,11 @@ function seleccionarServico(servicio){
         divSericio.classList.add('seleccionado')
     }   
 
-    
-
-    
-    
-    
-
     console.log(cita)
+}
+
+function nombreCliente(){
+    const nombre = document.querySelector("#nombre").value
+
+    cita.nombre = nombre
 }
