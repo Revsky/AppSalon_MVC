@@ -24,6 +24,7 @@ function iniciarApp(){
 
     nombreCliente() // <-- Obtenemos el nombre del cliente
     seleccionarFecha() // <-- Obtiene la fecha
+    seleccionarHora()
 
 
     consultarAPI(); // <- Consulta la api en el backend de php
@@ -207,6 +208,23 @@ function seleccionarFecha(){
             console.log("correcot")
         }
         
+    })
+}
+
+function seleccionarHora(){
+    const inputHora = document.querySelector("#hora")
+    inputHora.addEventListener('input', function(event){
+        console.log(event.target.value)
+
+        const horaCita = event.target.value;
+        const hora = horaCita.split(":")[0]
+        
+        if(hora < 10 || hora > 18){
+            event.target.value = ""
+            mostrarAlerta('Horas No Validas','error')
+        }else{
+            cita.hora = event.target.value
+        }
     })
 }
 

@@ -34,9 +34,10 @@
                 <input
                     id="fecha",
                     type="date",
-                    
+                    min="<?php echo date('Y-m-d', strtotime('+1 day')) ?>"
                 >
             </div>
+            <!-- strtotime permite agregar 1 día mas usando texto -->
 
             <div class="campo">
                 <label for="hora">Hora:</label>
