@@ -349,12 +349,22 @@ function mostrarResumen(){
     
 }
 
-function reservarCita(){
-    
+async function reservarCita(){
+
     /* Consultando FetchAPI */
     const datos = new FormData()
     datos.append('nombre','Angel')
 
+    /* Peticion API */
+    const url = 'http://localhost:8000/api/citas'
+    /* Cuando realizamos una petición post es necesario indicarlo con el parametro method */
+    const respuesta = await fetch(url,{
+        method:'POST'
+    })
+
+    const resultado = await respuesta.json()
+    console.log("resultado:",resultado)
+
     /* Podemos usar la sintaxis de [..datos] para poder ver lo que almacena el objeto, ya que directamente no nos permite verlo */
-    console.log([...datos])
+    /*console.log([...datos])*/
 }
