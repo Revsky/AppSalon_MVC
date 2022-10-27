@@ -186,7 +186,7 @@ function seleccionarServico(servicio){
         divSericio.classList.add('seleccionado')
     }   
 
-    console.log(cita)
+    //console.log(cita)
 }
 
 function nombreCliente(){
@@ -354,12 +354,15 @@ async function reservarCita(){
     /* Consultando FetchAPI */
     const datos = new FormData()
     datos.append('nombre','Angel')
+    datos.append('edad',24)
 
     /* Peticion API */
     const url = 'http://localhost:8000/api/citas'
     /* Cuando realizamos una petición post es necesario indicarlo con el parametro method */
+    /* Usamos body para indicar a fetch que existe el formdata y que envie esa informacion */
     const respuesta = await fetch(url,{
-        method:'POST'
+        method:'POST',
+        body:datos
     })
 
     const resultado = await respuesta.json()
