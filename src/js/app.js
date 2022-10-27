@@ -350,5 +350,11 @@ function mostrarResumen(){
 }
 
 function reservarCita(){
-    alert('reservado')
+    
+    /* Consultando FetchAPI */
+    const datos = new FormData()
+    datos.append('nombre','Angel')
+
+    /* Podemos usar la sintaxis de [..datos] para poder ver lo que almacena el objeto, ya que directamente no nos permite verlo */
+    console.log([...datos])
 }

@@ -14,6 +14,13 @@ class APIController{
         $nuevo = json_encode($servicios);
         echo $nuevo;
     }
+
+    public static function guardar(){
+        $respuesta = [
+            'mensaje' => "Todo Ok"
+        ];
+        echo json_encode($respuesta);
+    }
 }
 
 ?>
