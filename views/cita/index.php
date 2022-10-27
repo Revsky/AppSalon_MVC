@@ -47,6 +47,8 @@
                     
                 >
             </div>
+            <!-- Creamos un hidden input para que leeamos el id, este input no se puede ver -->
+            <input type="hidden" id="id" value="<?php echo $id; ?>">
         </form>
 
     </div>

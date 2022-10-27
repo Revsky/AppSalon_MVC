@@ -22,6 +22,7 @@ function iniciarApp(){
     paginaSiguiente();
     paginaAnterior();
 
+    idCliente();
     nombreCliente() // <-- Obtenemos el nombre del cliente
     seleccionarFecha() // <-- Obtiene la fecha
     seleccionarHora()
@@ -162,7 +163,7 @@ function mostrarServicios(servicios){
 
         document.querySelector("#servicios").appendChild(servicioDiv)
 
-        console.log(servicioDiv);
+        //console.log(servicioDiv);
 
 
     });
@@ -194,7 +195,10 @@ function nombreCliente(){
 
     cita.nombre = nombre
 }
-
+function idCliente(){
+    const id = document.querySelector("#id").value
+    cita.id = id
+}
 function seleccionarFecha(){
     const inputFecha = document.querySelector("#fecha")
     inputFecha.addEventListener('input',function(event){
@@ -216,7 +220,7 @@ function seleccionarFecha(){
 function seleccionarHora(){
     const inputHora = document.querySelector("#hora")
     inputHora.addEventListener('input', function(event){
-        console.log(event.target.value)
+       
 
         const horaCita = event.target.value;
         const hora = horaCita.split(":")[0]
@@ -351,10 +355,19 @@ function mostrarResumen(){
 
 async function reservarCita(){
 
+
+    const {id,fecha,hora,servicios} = cita;
+
+    const idServicio = servicios.map(servicio => servicio.id);
+    console.log(idServicio)
+    
+
     /* Consultando FetchAPI */
     const datos = new FormData()
-    datos.append('nombre','Angel')
-    datos.append('edad',24)
+    datos.append('usuarioId',id)
+    datos.append('fecha',fecha)
+    datos.append('hora',hora)
+    datos.append('servicios',idServicio)
 
     /* Peticion API */
     const url = 'http://localhost:8000/api/citas'
