@@ -355,19 +355,9 @@ function mostrarResumen(){
 
 async function reservarCita(){
 
-
-    const {id,fecha,hora,servicios} = cita;
-
-    const idServicio = servicios.map(servicio => servicio.id);
-    console.log(idServicio)
-    
-
     /* Consultando FetchAPI */
     const datos = new FormData()
-    datos.append('usuarioId',id)
-    datos.append('fecha',fecha)
-    datos.append('hora',hora)
-    datos.append('servicios',idServicio)
+    
 
     /* Peticion API */
     const url = 'http://localhost:8000/api/citas'
@@ -375,7 +365,6 @@ async function reservarCita(){
     /* Usamos body para indicar a fetch que existe el formdata y que envie esa informacion */
     const respuesta = await fetch(url,{
         method:'POST',
-        body:datos
     })
 
     const resultado = await respuesta.json()
