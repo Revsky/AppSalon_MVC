@@ -19,7 +19,7 @@ class APIController{
     public static function guardar(){
         /* Praa obtener informacion lo hacemos mediante $_post */
         $respuesta = [
-            'mensjae' => "Todo ok",
+            'datos' => $_POST,
         ];
         
         echo json_encode($respuesta);
