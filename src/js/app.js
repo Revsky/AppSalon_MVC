@@ -4,6 +4,7 @@ const pasoInicial = 1;
 const pasoFinal = 3;
 
 const cita = {
+    id:'',
     nombre:'',
     fecha:'',
     hora:'',
@@ -355,16 +356,17 @@ function mostrarResumen(){
 
 async function reservarCita(){
 
-    const{nombre,fecha,hora,servicios} = cita
+    const{id,fecha,hora,servicios} = cita
 
     /* Envia el id de los servivios */
     const idServicios = servicios.map(servicio => servicio.id)
 
     /* Consultando FetchAPI */
     const datos = new FormData()
-    datos.append('nombre',nombre)
+    
     datos.append('fecha',fecha)
     datos.append('hora',hora)
+    datos.append('usuarioId',id)
     datos.append('servicios',idServicios)
 
     

@@ -17,12 +17,9 @@ class APIController{
     }
 
     public static function guardar(){
-        /* Praa obtener informacion lo hacemos mediante $_post */
-        $respuesta = [
-            'datos' => $_POST,
-        ];
-        
-        echo json_encode($respuesta);
+        $cita = new Cita($_POST);
+        $resultado = $cita->guardar();
+        echo json_encode($resultado);
     }
 }
 
