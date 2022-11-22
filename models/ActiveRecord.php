@@ -142,8 +142,11 @@ class ActiveRecord {
         $query .= " ) VALUES ('"; 
         $query .= join("', '", array_values($atributos));
         $query .= "') ";
+
+        // Nos permite ver la consulta en POSTMAN
+        return json_encode(['query'=>$query]);
+
         // Resultado de la consulta
-        
         $resultado = self::$db->query($query);
         return [
            'resultado' =>  $resultado,
