@@ -371,7 +371,7 @@ async function reservarCita(){
 
     try {
         /* Peticion API */
-        const url = 'http://localhost:8000/api/citas/a'
+        const url = 'http://localhost:8000/api/citas'
         /* Cuando realizamos una petición post es necesario indicarlo con el parametro method */
         /* Usamos body para indicar a fetch que existe el formdata y que envie esa informacion */
         const respuesta = await fetch(url,{

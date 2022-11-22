@@ -144,7 +144,7 @@ class ActiveRecord {
         $query .= "') ";
 
         // Nos permite ver la consulta en POSTMAN
-        return json_encode(['query'=>$query]);
+        //return json_encode(['query'=>$query]);
 
         // Resultado de la consulta
         $resultado = self::$db->query($query);
