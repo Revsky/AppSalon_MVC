@@ -369,19 +369,40 @@ async function reservarCita(){
     datos.append('usuarioId',id)
     datos.append('servicios',idServicios)
 
+    try {
+        /* Peticion API */
+        const url = 'http://localhost:8000/api/citas/a'
+        /* Cuando realizamos una petición post es necesario indicarlo con el parametro method */
+        /* Usamos body para indicar a fetch que existe el formdata y que envie esa informacion */
+        const respuesta = await fetch(url,{
+            method:'POST',
+            body: datos
+        })
+
+        const resultado = await respuesta.json()
+        console.log("resultado:",resultado.resultado)
+
+        // Agregamos una alerta personalizada para indicar que se guardo la cita
+        if(resultado.resultado){
+            Swal.fire({
+                icon: 'success',
+                title: 'Cita Creada',
+                text: 'Tu cita fue creada exitosamente',
+                button:'OK'
+            }).then(()=>{
+                window.location.reload();
+            },3000)
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al guardar la cita',
+            
+          })
+    }
+
     
-
-    /* Peticion API */
-    const url = 'http://localhost:8000/api/citas'
-    /* Cuando realizamos una petición post es necesario indicarlo con el parametro method */
-    /* Usamos body para indicar a fetch que existe el formdata y que envie esa informacion */
-    const respuesta = await fetch(url,{
-        method:'POST',
-        body: datos
-    })
-
-    const resultado = await respuesta.json()
-    console.log("resultado:",resultado)
 
     /* Podemos usar la sintaxis de [..datos] para poder ver lo que almacena el objeto, ya que directamente no nos permite verlo */
     /*console.log([...datos])*/
