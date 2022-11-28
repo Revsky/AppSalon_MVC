@@ -59,7 +59,15 @@ class LoginController{
 
     public static function logout( ) 
     {
-        echo "dede logout";
+        # Llammamos a la función de sesión para poder operar con la superglobal $_SESSION 
+        session_start();
+
+        # Igualamos el arreglo de la superglobal a [] para que se elimine todo
+        $_SESSION = [];
+
+        # Redirigimos a la pagina de inicio de sesión
+        header('Location: /');
+        
     }
 
     public static function olvide( Router $router) 
