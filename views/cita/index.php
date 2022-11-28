@@ -1,6 +1,10 @@
 <h1 class="nombre-pagina">Nueva Cita</h1>
 <p class="descripcion-pagina">Elige tu servicios y coloca tus datos</p>
 
+<div class="barra">
+    <p>Hola: <?php echo $nombre ?? ''; ?></p>
+</div>
+
 <div class="app">
     <nav class="tabs">
         <button class="actual" type="button" data-paso="1">Servicios</button>
