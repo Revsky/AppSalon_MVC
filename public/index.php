@@ -6,6 +6,7 @@ use Controllers\APIController;
 use Controllers\CitaController;
 use MVC\Router;
 use Controllers\LoginController;
+use Controllers\AdminController;
 
 
 $router = new Router();
@@ -33,6 +34,7 @@ $router->get('/mensaje',[LoginController::class,'mensaje']);
 
 // Area privada
 $router->get('/cita',[CitaController::class,'index']);
+$router->get('/admin',[AdminController::class,'index']);
 
 // API de citas
 $router->get('/api/servicios',[APIController::class,'index']);
